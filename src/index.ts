@@ -13,7 +13,7 @@ dotenv.config({
 
 const PORT = process.env.PORT;
 
-const app = express();
+export const app = express();
 
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec()));
 app.use("/api/v1", router);
