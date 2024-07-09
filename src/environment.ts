@@ -2,7 +2,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import "dotenv/config";
 
 export const swaggerSpec = () => {
-    const swaggerDefinition = {
+    const swaggerDefinition: swaggerJSDoc.SwaggerDefinition = {
         openapi: "3.0.0",
         info: {
             title: "Express API for music application",
@@ -14,12 +14,18 @@ export const swaggerSpec = () => {
                 url: `http://localhost:${process.env.PORT}`,
                 description: "Default server"
             }
+        ],
+        tags: [
+            {
+                name: "Server",
+                description: "Server routes"
+            }
         ]
     };
 
-    const options = {
+    const options: swaggerJSDoc.Options = {
         swaggerDefinition,
-        apis: ["./routes/*.ts"]
+        apis: ["**/*.ts"]
     };
 
     return swaggerJSDoc(options);

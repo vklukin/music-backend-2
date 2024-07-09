@@ -18,7 +18,7 @@ const app = express();
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec()));
 app.use("/api/v1", router);
 
-app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
+app.listen(PORT, () => console.log(`Server is running on ${PORT}. http://localhost:${PORT}`));
 logger.log({
     Action: `Server is running on ${PORT}`
 });
