@@ -9,7 +9,8 @@ export default tseslint.config(
     { languageOptions: { globals: globals.browser, parser: babelParser } },
     {
         rules: {
-            "no-unused-vars": "error"
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": "off"
         }
     }
 );

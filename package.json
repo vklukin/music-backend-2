@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "express": "^4.19.2",
+        "music-metadata": "^9.0.1",
         "node-cache": "^5.1.2",
         "swagger-ui-express": "^5.0.1"
     }
