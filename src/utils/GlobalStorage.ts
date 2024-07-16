@@ -1,3 +1,5 @@
+type StorageKeys = "audioFilesList" | "audioFilesDBList";
+
 class GlobalStorage {
     private storage: { [P: string]: unknown };
 
@@ -5,14 +7,16 @@ class GlobalStorage {
         this.storage = {};
     }
 
-    set(key: string, value: unknown) {
+    set(key: StorageKeys, value: unknown) {
         Object.defineProperty(this.storage, key, {
-            value
+            value,
+            writable: true,
+            enumerable: true
         });
     }
 
-    get(key: string) {
-        return this.storage[key] ?? null;
+    get<T>(key: string) {
+        return (this.storage[key] as T) ?? null;
     }
 }
 

@@ -6,12 +6,14 @@ import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./environment";
 import { logger } from "./logger";
 import router from "./router";
+import { setupAudioList } from "./utils/setupAudioList";
 
 dotenv.config({
     path: path.join(__dirname, `../.env`)
 });
 
 const PORT = process.env.PORT;
+setupAudioList();
 
 export const app = express();
 

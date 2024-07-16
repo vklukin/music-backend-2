@@ -1,6 +1,7 @@
 import express from "express";
 
 import { getAudioList } from "./getAudioList";
+import { streamAudio } from "./streamAudio.js";
 
 const router = express.Router({ mergeParams: true });
 
@@ -36,5 +37,7 @@ const router = express.Router({ mergeParams: true });
  *                   type: string
  */
 router.get("/list", getAudioList);
+
+router.get("/:id", streamAudio);
 
 export default router;
