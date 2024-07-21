@@ -38,6 +38,6 @@ const router = express.Router({ mergeParams: true });
  */
 router.get("/list", getAudioList);
 
-router.get("/:id", streamAudio);
+router.get("/stream/:id", streamAudio);
 
 export default router;

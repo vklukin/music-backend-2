@@ -15,7 +15,7 @@ export const setupAudioList = () => {
         return;
     }
 
-    const externalResult: Array<AudioListProps> = [];
+    const externalResult: Array<Omit<AudioListProps, "duration">> = [];
     const internalResult: Array<AudioListPaths> = [];
 
     const files = fs.readdirSync(process.env.MUSIC_FOLDER_PATH as string);
@@ -23,25 +23,15 @@ export const setupAudioList = () => {
         const splittedFileName = file.split(" - ");
 
         internalResult.push({
-            musicId: index + 1,
+            musicId: index,
             pathToFile: `${process.env.MUSIC_FOLDER_PATH}\\${file}`
         });
 
-        import("music-metadata").then(async (mm) => {
-            const fileMetadata = await mm.parseFile(`${process.env.MUSIC_FOLDER_PATH}\\${file}`);
-            if (!fileMetadata) {
-                return;
-            }
-
-            const audioDuration = Math.ceil(fileMetadata.format.duration || 0);
-
-            externalResult.push({
-                id: index,
-                title: splittedFileName[0],
-                author: splittedFileName[1],
-                path: `/audio/${index + 1}`,
-                duration: audioDuration
-            });
+        externalResult.push({
+            id: index,
+            title: splittedFileName[0],
+            author: splittedFileName[1],
+            path: `/audio/${index}`
         });
     });
 
