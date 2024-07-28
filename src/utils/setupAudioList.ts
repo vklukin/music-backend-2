@@ -1,12 +1,18 @@
 import fs from "fs";
 import "dotenv/config";
 
-import { AudioListProps } from "../routes/audio/getAudioList";
 import { globalStorage } from "./GlobalStorage";
 
 export interface AudioListPaths {
     musicId: number;
     pathToFile: string;
+}
+
+interface AudioListProps {
+    id: number;
+    title: string;
+    author: string;
+    path: string;
 }
 
 export const setupAudioList = () => {

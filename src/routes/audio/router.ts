@@ -16,28 +16,26 @@ const router = express.Router({ mergeParams: true });
  *       200:
  *         description: Responses audio list in the music folder
  *         $ref: '#/components/schemas/AudioList'
- * components:
- *   schemas:
- *     AudioList:
- *       description: An array with audios list
- *       content:
- *         application/json:
- *           schema:
- *             type: array
- *             items:
- *               type: object
- *               properties:
- *                 id:
- *                   type: number
- *                 title:
- *                   type: string
- *                 author:
- *                   type: string
- *                 path:
- *                   type: string
  */
 router.get("/list", getAudioList);
 
+/**
+ * @swagger
+ * /audio/stream/:id:
+ *   get:
+ *     summary: Get a pong from server
+ *     tags:
+ *       - Server
+ *     responses:
+ *       200:
+ *         description: Streaming audio by id
+ *       404:
+ *         description: Couldn't found audio with provided id
+ *         $ref: '#/components/schemas/DefaultError'
+ *       500:
+ *         description: Returns default error object
+ *         $ref: '#/components/schemas/DefaultError'
+ */
 router.get("/stream/:id", streamAudio);
 
 export default router;
