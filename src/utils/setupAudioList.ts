@@ -2,6 +2,7 @@ import fs from "fs";
 import "dotenv/config";
 
 import { globalStorage } from "./GlobalStorage";
+import { getAudioDuration } from "./getAudioDuration";
 
 export interface AudioListPaths {
     musicId: number;
@@ -13,6 +14,7 @@ interface AudioListProps {
     title: string;
     author: string;
     path: string;
+    duration: number;
 }
 
 export const setupAudioList = () => {
@@ -21,23 +23,25 @@ export const setupAudioList = () => {
         return;
     }
 
-    const externalResult: Array<Omit<AudioListProps, "duration">> = [];
+    const externalResult: Array<AudioListProps> = [];
     const internalResult: Array<AudioListPaths> = [];
 
     const files = fs.readdirSync(process.env.MUSIC_FOLDER_PATH as string);
     files.forEach((file, index) => {
         const splittedFileName = file.split(" - ");
+        const fullFilePath = `${process.env.MUSIC_FOLDER_PATH}\\${file}`;
 
         internalResult.push({
             musicId: index,
-            pathToFile: `${process.env.MUSIC_FOLDER_PATH}\\${file}`
+            pathToFile: fullFilePath
         });
 
         externalResult.push({
             id: index,
             title: splittedFileName[0],
             author: splittedFileName[1],
-            path: `/audio/${index}`
+            path: `/audio/${index}`,
+            duration: getAudioDuration(fullFilePath)
         });
     });
 
