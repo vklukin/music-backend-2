@@ -28,7 +28,7 @@ export const setupAudioList = () => {
 
     const files = fs.readdirSync(process.env.MUSIC_FOLDER_PATH as string);
     files.forEach((file, index) => {
-        const splittedFileName = file.split(" - ");
+        const splittedFileName = file.replace(/\.mp.+/, "").split(" - ");
         const fullFilePath = `${process.env.MUSIC_FOLDER_PATH}\\${file}`;
 
         internalResult.push({
