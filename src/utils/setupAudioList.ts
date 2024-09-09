@@ -13,7 +13,6 @@ interface AudioListProps {
     id: number;
     title: string;
     author: string;
-    path: string;
     duration: number;
 }
 
@@ -40,7 +39,6 @@ export const setupAudioList = () => {
             id: index,
             title: splittedFileName[0],
             author: splittedFileName[1],
-            path: `/audio/${index}`,
             duration: getAudioDuration(fullFilePath)
         });
     });
